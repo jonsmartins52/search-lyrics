@@ -1,0 +1,27 @@
+.asideContainer {
+  padding: 3rem;
+}
+
+.searchForm {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 40%;
+}
+
+.searchForm__input {
+  border: none;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+}
+
+.searchForm__button {
+  background-color: #8d56fd;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.4rem;
+  font-weight: bold;
+  width: 50%;
+}
