@@ -1,27 +1,93 @@
+import { useState } from "react";
+import api from "../../services/api";
+import { musicResponse } from "../../types/Musics";
+import Button from "../Button";
+
 import "./styles.css";
 
 function Aside() {
+  const [artist, setArtist] = useState("");
+  const [songsInfo, setSongsInfo] = useState<musicResponse>();
+
+  async function handleArtist() {
+    try {
+      const response = await api.get(`suggest/${artist}`);
+      setSongsInfo(response.data);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  }
+
+  async function handleSong(artist: string, songTitle: string) {
+    try {
+      const response = await api.get(`v1/${artist}/${songTitle}`);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function handleNextMusicList(uri: string) {
+    try {
+      const response = await fetch(
+        `https://cors-anywhere.herokuapp.com/${uri}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log("error: ", error);
+    }
+  }
+
   return (
     <aside className="asideContainer">
-      <div className="searchForm">
-        <input type="text" className="searchForm__input" />
-        <button className="searchForm__button">Buscar</button>
-      </div>
-      <div className="musics">
-        <h2 className="musics__title">Músicas:</h2>
+      <section className="searchForm">
+        <input
+          type="text"
+          className="searchForm__input"
+          autoCorrect="false"
+          onChange={(e) => setArtist(e.target.value)}
+        />
+
+        <Button
+          text="Buscar"
+          onClick={() => handleArtist()}
+          classname="searchForm__button"
+        />
+      </section>
+      <section className="musics">
+        <h2 className="musics__title">Músicas</h2>
         <ul className="musics__list">
-          <li className="musics__list__item">Sem sentido</li>
-          <li className="musics__list__item">Antes que você conte até dez</li>
-          <li className="musics__list__item">Já não sei o que fazer comigo</li>
-          <li className="musics__list__item">Cobra de vidro</li>
-          <li className="musics__list__item">Sasha Grey</li>
-          <li className="musics__list__item">Santa sampa</li>
-          <li className="musics__list__item">Vício verso</li>
-          <li className="musics__list__item">Distraídos venceremos</li>
-          <li className="musics__list__item">O amor e o acaso</li>
-          <li className="musics__list__item">Fingir que não dói</li>
+          {songsInfo?.data.map((song) => (
+            <li
+              key={song.id}
+              className="musics__list__item"
+              onClick={() => handleSong(song.artist.name, song.title)}
+            >
+              {song.title}
+            </li>
+          ))}
         </ul>
-      </div>
+      </section>
+      <section className="buttons">
+        <Button
+          text="Anterior"
+          onClick={() => console.log}
+          classname="buttons__button"
+        />
+        <Button
+          text="Próximo"
+          onClick={() => handleNextMusicList(songsInfo?.next ?? "")}
+          classname="buttons__button"
+        />
+      </section>
     </aside>
   );
 }
