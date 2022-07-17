@@ -2,13 +2,16 @@ import "./App.css";
 
 import Aside from "./components/Aside";
 import Main from "./components/Main";
+import SongContextProvider from "./context/SongContextProvider";
 
 function App() {
   return (
-    <div className="container">
-      <Aside />
-      <Main />
-    </div>
+    <SongContextProvider>
+      <div className="container">
+        <Aside />
+        <Main />
+      </div>
+    </SongContextProvider>
   );
 }
 
