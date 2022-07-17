@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import api from "../../services/api";
-import { musicResponse } from "../../types/Musics";
+import { SongContext } from "../../context/SongContext";
+import { SongResponse } from "../../types/Musics";
 import Button from "../Button";
 
 import "./styles.css";
+import { SongContextType } from "../../types/SongContext";
 
 function Aside() {
   const [artist, setArtist] = useState("");
-  const [songsInfo, setSongsInfo] = useState<musicResponse>();
+  const [songsInfo, setSongsInfo] = useState<SongResponse>();
+  const { saveSong } = useContext(SongContext) as SongContextType;
 
   async function handleArtist() {
     try {
@@ -22,6 +25,11 @@ function Aside() {
     try {
       const response = await api.get(`v1/${artist}/${songTitle}`);
       console.log(response.data);
+      saveSong({
+        artist,
+        title: songTitle,
+        lyric: response.data,
+      });
     } catch (error) {
       console.log(error);
     }

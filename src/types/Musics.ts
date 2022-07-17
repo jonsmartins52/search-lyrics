@@ -1,12 +1,12 @@
-export type musicResponse = {
-  data: musicInfo[];
+export type SongResponse = {
+  data: SongInfo[];
   next: string;
   total: number;
 };
 
-type musicInfo = {
-  album: album;
-  artist: artist;
+type SongInfo = {
+  album: Album;
+  artist: Artist;
   duration: number;
   explicit_content_cover: number;
   explicit_content_lyrics: number;
@@ -23,7 +23,13 @@ type musicInfo = {
   type: string;
 };
 
-type album = {
+export type Song = {
+  artist: string;
+  title: string;
+  lyric: string;
+};
+
+type Album = {
   cover: string;
   cover_big: string;
   cover_medium: string;
@@ -36,7 +42,7 @@ type album = {
   type: string;
 };
 
-type artist = {
+type Artist = {
   id: number;
   link: string;
   name: string;
