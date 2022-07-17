@@ -4,3 +4,11 @@
   column-gap: 0.3rem;
   min-height: 100vh;
 }
+
+@media (max-width: 420px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+}

@@ -1,13 +1,16 @@
 .title {
-  font-weight: bold;
   color: #8d56fd;
+  font-weight: bold;
+  margin-left: 1rem;
 }
 
 .artist-name {
   font-weight: bold;
+  margin-left: 1rem;
 }
 
 .main div {
   height: 75vh;
   overflow-y: scroll;
+  padding-left: 1rem;
 }
