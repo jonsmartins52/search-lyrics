@@ -24,11 +24,11 @@ function Aside() {
   async function handleSong(artist: string, songTitle: string) {
     try {
       const response = await api.get(`v1/${artist}/${songTitle}`);
-      console.log(response.data);
+
       saveSong({
         artist,
         title: songTitle,
-        lyric: response.data,
+        lyric: response.data.lyrics,
       });
     } catch (error) {
       console.log(error);

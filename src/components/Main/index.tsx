@@ -6,6 +6,7 @@ import "./styles.css";
 
 function Main() {
   const { song } = useContext(SongContext) as SongContextType;
+  const { lyric } = song;
 
   return (
     <main className="main">
@@ -14,7 +15,9 @@ function Main() {
         {song.artist ? `${song.artist}` : "Artista"}
       </h2>
       <div>
-        <p>Letra...</p>
+        {lyric.split(/(\r\n|\r|\n)/g).map((paragraph, index) => (
+          <p key={index}> {paragraph} </p>
+        ))}
       </div>
     </main>
   );
