@@ -3,6 +3,7 @@ import api from "../../services/api";
 import { SongContext } from "../../context/SongContext";
 import { SongResponse } from "../../types/Musics";
 import Button from "../Button";
+import Spinner from "../Spinner";
 
 import "./styles.css";
 import { SongContextType } from "../../types/SongContext";
@@ -10,19 +11,24 @@ import { SongContextType } from "../../types/SongContext";
 function Aside() {
   const [artist, setArtist] = useState("");
   const [songsInfo, setSongsInfo] = useState<SongResponse>();
+  const [isSpinnerActive, setIsSpinnerActive] = useState(false);
   const { saveSong } = useContext(SongContext) as SongContextType;
 
   async function handleArtist() {
     try {
+      setIsSpinnerActive(true);
       const response = await api.get(`suggest/${artist}`);
       setSongsInfo(response.data);
     } catch (error) {
       console.log("error: ", error);
+    } finally {
+      setIsSpinnerActive(false);
     }
   }
 
   async function handleSong(artist: string, songTitle: string) {
     try {
+      setIsSpinnerActive(true);
       const response = await api.get(`v1/${artist}/${songTitle}`);
 
       saveSong({
@@ -32,6 +38,8 @@ function Aside() {
       });
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsSpinnerActive(false);
     }
   }
 
@@ -56,6 +64,8 @@ function Aside() {
 
   return (
     <aside className="asideContainer">
+      <Spinner isSpinnerActive={isSpinnerActive} />
+
       <section className="searchForm">
         <input
           type="text"

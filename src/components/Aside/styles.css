@@ -1,6 +1,7 @@
 .asideContainer {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   padding: 1.5rem;
 }
 
@@ -23,7 +24,7 @@
 }
 
 .searchForm__button:hover {
-  transform: scale(1.2);
+  opacity: 0.8;
 }
 
 .musics {
@@ -44,15 +45,6 @@
   padding: 0.5rem;
 
   list-style: none;
-}
-
-.musics__list::-webkit-scrollbar {
-  width: 0.2rem;
-}
-
-.musics__list::-webkit-scrollbar-thumb {
-  background-color: #fff;
-  height: 1rem;
 }
 
 .musics__list__item {
@@ -77,4 +69,10 @@
 
 .buttons__button {
   width: 30%;
+}
+
+.spinner-loader {
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
 }

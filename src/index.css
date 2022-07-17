@@ -2,6 +2,15 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar {
+  width: 0.2rem;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  height: 1rem;
+}
+
 body {
   background-color: #282c34;
   color: #fff;

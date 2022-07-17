@@ -6,3 +6,8 @@
 .artist-name {
   font-weight: bold;
 }
+
+.main div {
+  height: 75vh;
+  overflow-y: scroll;
+}
