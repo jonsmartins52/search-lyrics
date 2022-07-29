@@ -7,6 +7,7 @@ import Spinner from "../Spinner";
 
 import "./styles.css";
 import { SongContextType } from "../../types/SongContext";
+import ItemVazio from "../ItemVazio";
 
 function Aside() {
   const [artist, setArtist] = useState("");
@@ -83,7 +84,7 @@ function Aside() {
       <section className="musics">
         <h2 className="musics__title">Músicas</h2>
         <ul className="musics__list">
-          {songsInfo?.data.map((song) => (
+          {/* {songsInfo?.data.map((song) => (
             <li
               key={song.id}
               className="musics__list__item"
@@ -91,7 +92,20 @@ function Aside() {
             >
               {song.title}
             </li>
-          ))}
+          ))} */}
+          {songsInfo?.data.length ? (
+            songsInfo?.data.map((song) => (
+              <li
+                key={song.id}
+                className="musics__list__item"
+                onClick={() => handleSong(song.artist.name, song.title)}
+              >
+                {song.title}
+              </li>
+            ))
+          ) : (
+            <ItemVazio />
+          )}
         </ul>
       </section>
       <section className="buttons">
