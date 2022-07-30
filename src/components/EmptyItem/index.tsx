@@ -7,7 +7,7 @@ interface Props {
   text: string;
 }
 
-function ItemVazio({ text }: Props) {
+function EmptyItem({ text }: Props) {
   return (
     <div className="empty-container">
       <MdMusicOff size={30} />
@@ -16,4 +16,4 @@ function ItemVazio({ text }: Props) {
   );
 }
 
-export default ItemVazio;
+export default EmptyItem;

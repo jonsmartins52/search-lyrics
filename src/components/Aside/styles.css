@@ -78,16 +78,6 @@
   font-weight: bold;
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.buttons__button {
-  width: 30%;
-}
-
 .spinner-loader {
   position: absolute;
   top: 50vh;

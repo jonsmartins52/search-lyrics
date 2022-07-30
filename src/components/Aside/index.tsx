@@ -8,7 +8,7 @@ import Spinner from "../Spinner";
 
 import "./styles.css";
 import { SongContextType } from "../../types/SongContext";
-import ItemVazio from "../ItemVazio";
+import EmptyItem from "../EmptyItem";
 
 function Aside() {
   const [artist, setArtist] = useState("");
@@ -45,25 +45,6 @@ function Aside() {
     }
   }
 
-  async function handleNextMusicList(uri: string) {
-    try {
-      const response = await fetch(
-        `https://cors-anywhere.herokuapp.com/${uri}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log("error: ", error);
-    }
-  }
-
   function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") handleArtist();
   }
@@ -74,6 +55,7 @@ function Aside() {
 
       <section className="searchForm">
         <input
+          placeholder="Artista"
           type="text"
           className="searchForm__input"
           autoCorrect="false"
@@ -105,22 +87,10 @@ function Aside() {
               </li>
             ))
           ) : (
-            <ItemVazio text="Nenhuma música encontrada." />
+            <EmptyItem text="Nenhuma música encontrada." />
           )}
         </ul>
       </section>
-      {/* <section className="buttons">
-        <Button
-          text="Anterior"
-          onClick={() => console.log}
-          classname="buttons__button"
-        />
-        <Button
-          text="Próximo"
-          onClick={() => handleNextMusicList(songsInfo?.next ?? "")}
-          classname="buttons__button"
-        />
-      </section> */}
     </aside>
   );
 }

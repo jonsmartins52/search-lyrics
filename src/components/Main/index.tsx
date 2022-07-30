@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { SongContext } from "../../context/SongContext";
 import { SongContextType } from "../../types/SongContext";
-import ItemVazio from "../ItemVazio";
+import EmptyItem from "../EmptyItem";
 
 import "./styles.css";
 
@@ -23,7 +23,7 @@ function Main() {
             .split(/(\r\n|\r|\n)/g)
             .map((paragraph, index) => <p key={index}> {paragraph} </p>)
         ) : (
-          <ItemVazio text="Não há letra para exibir." />
+          <EmptyItem text="Não há letra para exibir." />
         )}
       </div>
     </main>
