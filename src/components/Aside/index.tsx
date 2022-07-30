@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { MdSearch } from "react-icons/md";
 import api from "../../services/api";
 import { SongContext } from "../../context/SongContext";
@@ -64,6 +64,10 @@ function Aside() {
     }
   }
 
+  function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") handleArtist();
+  }
+
   return (
     <aside className="asideContainer">
       <Spinner isSpinnerActive={isSpinnerActive} />
@@ -73,6 +77,7 @@ function Aside() {
           type="text"
           className="searchForm__input"
           autoCorrect="false"
+          onKeyUp={(e) => handleKeyUp(e)}
           onChange={(e) => setArtist(e.target.value)}
         />
 

@@ -16,12 +16,14 @@
   border: none;
   font-size: 1rem;
   padding: 1rem 2rem;
-  width: 70%;
+  width: 100%;
 }
 
 .searchForm__button {
   height: 3.2rem;
-  width: 30%;
+  position: relative;
+  right: 0;
+  width: 20%;
 }
 
 .searchForm__button:hover {
