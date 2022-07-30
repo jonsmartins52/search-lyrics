@@ -3,11 +3,15 @@ import { MdMusicOff } from "react-icons/md";
 
 import "./styles.css";
 
-function ItemVazio() {
+interface Props {
+  text: string;
+}
+
+function ItemVazio({ text }: Props) {
   return (
     <div className="empty-container">
       <MdMusicOff size={30} />
-      <p>nenhum item encontrado.</p>
+      <p>{text}</p>
     </div>
   );
 }

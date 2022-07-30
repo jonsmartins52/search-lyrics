@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { MdSearch } from "react-icons/md";
 import api from "../../services/api";
 import { SongContext } from "../../context/SongContext";
 import { SongResponse } from "../../types/Musics";
@@ -76,23 +77,18 @@ function Aside() {
         />
 
         <Button
-          text="Buscar"
+          Icon={MdSearch}
           onClick={() => handleArtist()}
           classname="searchForm__button"
         />
       </section>
       <section className="musics">
         <h2 className="musics__title">Músicas</h2>
-        <ul className="musics__list">
-          {/* {songsInfo?.data.map((song) => (
-            <li
-              key={song.id}
-              className="musics__list__item"
-              onClick={() => handleSong(song.artist.name, song.title)}
-            >
-              {song.title}
-            </li>
-          ))} */}
+        <ul
+          className={
+            songsInfo?.data.length ? "musics__list" : "musics__list--empty"
+          }
+        >
           {songsInfo?.data.length ? (
             songsInfo?.data.map((song) => (
               <li
@@ -104,11 +100,11 @@ function Aside() {
               </li>
             ))
           ) : (
-            <ItemVazio />
+            <ItemVazio text="Nenhuma música encontrada." />
           )}
         </ul>
       </section>
-      <section className="buttons">
+      {/* <section className="buttons">
         <Button
           text="Anterior"
           onClick={() => console.log}
@@ -119,7 +115,7 @@ function Aside() {
           onClick={() => handleNextMusicList(songsInfo?.next ?? "")}
           classname="buttons__button"
         />
-      </section>
+      </section> */}
     </aside>
   );
 }

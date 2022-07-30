@@ -1,18 +1,20 @@
+import { IconType } from "react-icons";
 import "./styles.css";
 
 interface Props {
-  text: string;
+  text?: string;
   classname?: string;
+  Icon?: IconType | undefined;
   onClick: () => {};
 }
 
-function Button({ text, onClick, classname }: Props) {
+function Button({ text, onClick, classname, Icon }: Props) {
   return (
     <button
       className={`button ${classname ? classname : ""}`}
       onClick={onClick}
     >
-      {text}
+      {Icon ? <Icon size={25} /> : text}
     </button>
   );
 }
